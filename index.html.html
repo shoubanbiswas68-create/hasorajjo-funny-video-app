@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>হাসোরাজ্য - Funny Video App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFBF0;
+  --surface: #FFFFFF;
+  --ink: #1E1B18;
+  --muted: #6B6560;
+  --accent: #FF6B35;
+  --accent-weak: color-mix(in oklab, var(--accent) 10%, var(--surface));
+  --accent-dark: #E55A2B;
+  --secondary: #FFD23F;
+  --secondary-weak: color-mix(in oklab, var(--secondary) 15%, var(--bg));
+  --line: color-mix(in oklab, var(--ink) 8%, transparent);
+  --step-0: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  --step-1: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --step-2: clamp(1.6rem, 1.3rem + 1.5vw, 2.6rem);
+  --step-3: clamp(2.4rem, 1.8rem + 3vw, 4.2rem);
+  --space: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --radius: 18px;
+  --shadow: 0 2px 4px rgba(0,0,0,0.03), 0 12px 28px -10px rgba(0,0,0,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Noto Sans Bengali", "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.85;
+  font-size: var(--step-0);
+}
+
+h1, h2, h3, .brand {
+  font-family: "Baloo Da 2", "Noto Sans Bengali", sans-serif;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #fff;
+  padding: calc(var(--space)*3) var(--space) calc(var(--space)*4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+.brand {
+  font-size: var(--step-3);
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.brand span {
+  color: var(--secondary);
+}
+
+.tagline {
+  font-size: var(--step-1);
+  opacity: 0.95;
+  margin-top: 0.6em;
+  max-width: 32ch;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Wave divider */
+.wave {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: -1px;
+}
+
+/* Sections */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: calc(var(--space)*2) var(--space);
+}
+
+section {
+  margin-bottom: calc(var(--space)*3);
+}
+
+.section-title {
+  font-size: var(--step-2);
+  color: var(--ink);
+  margin-bottom: var(--space);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.section-title .icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-weak);
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+/* Feature cards */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: calc(var(--space)*1.2);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px -8px rgba(0,0,0,0.18);
+}
+
+.card h3 {
+  font-size: var(--step-1);
+  margin-bottom: 0.4em;
+  color: var(--accent-dark);
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.card .emoji {
+  font-size: 2.2rem;
+  margin-bottom: 0.3em;
+  display: block;
+}
+
+/* App mockup */
+.mockup-wrap {
+  display: flex;
+  justify-content: center;
+  margin: calc(var(--space)*1.5) 0;
+}
+
+.phone {
+  width: 280px;
+  height: 520px;
+  background: var(--ink);
+  border-radius: 36px;
+  padding: 10px;
+  box-shadow: 0 24px 60px -16px rgba(0,0,0,0.35);
+  position: relative;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #2a2622 0%, #1e1b18 100%);
+  border-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.notch {
+  width: 90px;
+  height: 22px;
+  background: var(--ink);
+  border-radius: 0 0 14px 14px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.app-header {
+  padding: 32px 16px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-family: "Baloo Da 2", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  z-index: 2;
+}
+
+.app-header .logo-text {
+  color: var(--secondary);
+}
+
+.video-feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-card {
+  background: var(--surface);
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.thumb {
+  height: 140px;
+  background: linear-gradient(135deg, var(--accent) 0%, #ff8f5a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.thumb.two { background: linear-gradient(135deg, #7B61FF 0%, #A48EFF 100%); }
+.thumb.three { background: linear-gradient(135deg, #06D6A0 0%, #3EE4B8 100%); }
+
+.play-btn {
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.play-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--accent-dark);
+  margin-left: 3px;
+}
+
+.video-info {
+  padding: 10px 12px;
+}
+
+.video-info h4 {
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.video-info .meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.nav-bar {
+  height: 56px;
+  background: rgba(30,27,24,0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+  z-index: 4;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.nav-item.active {
+  color: var(--secondary);
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+/* How it works */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space)*1.2);
+}
+
+.step {
+  display: flex;
+  gap: var(--space);
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: calc(var(--space)*1.1);
+  box-shadow: var(--shadow);
+}
+
+.step-num {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.step h3 {
+  font-size: var(--step-1);
+  margin-bottom: 0.2em;
+  color: var(--ink);
+}
+
+.step p {
+  color: var(--muted);
+}
+
+/* CTA */
+.cta-band {
+  background: linear-gradient(135deg, var(--secondary) 0%, #ffe066 100%);
+  border-radius: var(--radius);
+  padding: calc(var(--space)*1.8) var(--space);
+  text-align: center;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.cta-band h2 {
+  font-size: var(--step-2);
+  margin-bottom: 0.4em;
+}
+
+.cta-band p {
+  max-width: 44ch;
+  margin: 0 auto 1.2em;
+  opacity: 0.85;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--accent);
+  color: #fff;
+  font-family: "Baloo Da 2", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.85em 2em;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px -4px rgba(255,107,53,0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(255,107,53,0.55);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: calc(var(--space)*2) var(--space);
+  color: var(--muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .step { flex-direction: column; gap: 0.6em; }
+  .phone { transform: scale(0.92); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .btn { transition: none; }
+}
+
+@media print {
+  body { background: #fff; }
+  header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">হাসো<span>রাজ্য</span></div>
+  <p class="tagline">প্রতিদিন নতুন নতুন মজার ভিডিও — হাসুন, শেয়ার করুন, ভাইরাল হন!</p>
+</header>
+
+<svg class="wave" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#FFFBF0" d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"></path>
+</svg>
+
+<main>
+
+<section>
+  <h2 class="section-title"><span class="icon">✨</span> অ্যাপের বৈশিষ্ট্য</h2>
+  <div class="features">
+    <div class="card">
+      <span class="emoji">😂</span>
+      <h3>ট্রেন্ডিং মজার ভিডিও</h3>
+      <p>প্রতিদিন হাজারো নতুন ফানি ভিডিও আপলোড হয়। আপনার পছন্দ অনুযায়ী সেরা কন্টেন্ট পান।</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎬</span>
+      <h3>সহজ ভিডিও এডিটর</h3>
+      <p>ফিল্টার, স্টিকার, টেক্সট ও সাউন্ড ইফেক্ট দিয়ে মিনিটেই মজার ভিডিও তৈরি করুন।</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🔥</span>
+      <h3>ভাইরাল হওয়ার সুযোগ</h3>
+      <p>আপনার তৈরি ভিডিও লাখো মানুষ দেখবে। লাইক, কমেন্ট ও শেয়ারে রাজত্ব করুন।</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🏆</span>
+      <h3>চ্যালেঞ্জ ও পুরস্কার</h3>
+      <p>নিয়মিত ফানি চ্যালেঞ্জে অংশ নিন এবং বিশেষ পুরস্কার জিতে নিন।</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title"><span class="icon">📱</span> অ্যাপ প্রিভিউ</h2>
+  <div class="mockup-wrap">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="notch"></div>
+        <div class="app-header">
+          <div class="logo-text">হাসোরাজ্য</div>
+          <div style="font-size:0.85rem;opacity:0.8;">🔍</div>
+        </div>
+        <div class="video-feed">
+          <div class="video-card">
+            <div class="thumb">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <div class="video-info">
+              <h4>বাসায় নতুন বিড়াল এলে 😹</h4>
+              <div class="meta">১.২M ভিউ · ৪ঘণ্টা আগে</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="thumb two">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <div class="video-info">
+              <h4>বন্ধুর বিয়েতে কাণ্ড 🤣</h4>
+              <div class="meta">৮৫০K ভিউ · ১ঘণ্টা আগে</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="thumb three">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <div class="video-info">
+              <h4>মামার ফানি প্রতিক্রিয়া 😆</h4>
+              <div class="meta">২.১M ভিউ · ১২ঘণ্টা আগে</div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-bar">
+          <div class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>হোম</span>
+          </div>
+          <div class="nav-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span>ট্রেন্ডিং</span>
+          </div>
+          <div class="nav-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>আমার</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title"><span class="icon">🚀</span> কীভাবে ব্যবহার করবেন</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">১</div>
+      <div>
+        <h3>ডাউনলোড করুন</h3>
+        <p>Google Play বা App Store থেকে "হাসোরাজ্য" অ্যাপটি ডাউনলোড করে ইনস্টল করুন। এক মিনিটেই রেডি!</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">২</div>
+      <div>
+        <h3>ভিডিও দেখুন ও রঅ্যা্ট করুন</h3>
+        <p>অন্যদের তৈরি মজার ভিডিও দেখুন, লাইক দিন, কমেন্ট করুন এবং বন্ধুদের সাথে শেয়ার করুন।</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">৩</div>
+      <div>
+        <h3>নিজের ভিডিও তৈরি করুন</h3>
+        <p>ক্যামেরা চালু করুন, মজার মুহূর্ত ধারণ করুন, এডিটর দিয়ে সাজান এবং আপলোড করে ভাইরাল হন!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>আজই যোগ দিন হাসোরাজ্যে!</h2>
+  <p>লাখো মানুষের সাথে হাসুন, মজা করুন এবং নজের ক্রিয়েটিভিটি দেখান। সম্পূর্ণ বিনামূল্যে!</p>
+  <a class="btn" href="#">📲 ডাউনলোড করুন</a>
+</section>
+
+</main>
+
+<footer>
+  <p>© ২০২৫ হাসোরাজ্য — সব হাসিতে ভরা! 😄</p>
+</footer>
+
+</body>
+</html>
